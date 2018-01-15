@@ -57,7 +57,7 @@ def main():
 	path = os.path.join(FLAGS.data_dir, "processed/")
 	
 	input_File=word+"_with_glove_vectors_100.npy"
-	#input_File="/home/lalchand/neural-sentiment_wsd/data/yelp/yelp_tokenized.npy"
+	
 	data1 = np.load(input_File)
 	average_accuracy=0.0
 	s=time.time()

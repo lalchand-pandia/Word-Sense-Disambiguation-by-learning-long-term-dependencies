@@ -12,7 +12,7 @@ with open('util/vocab_'+word+'_sentences.txt', 'rb') as handle:
 	init_word_vecs=pickle.load(handle)
 
 init_emb = fill_with_gloves(init_word_vecs, 100)
-#embedding_matrix=np.load("/home/lalchand/word_sense_disambiguation/100features_1minwords_3context_copy.npy")
+
 class SentimentModel(object):
 	'''
 	Sentiment Model
