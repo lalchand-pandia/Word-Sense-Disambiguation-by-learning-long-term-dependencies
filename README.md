@@ -2,8 +2,8 @@
 Word sense disambiguation by using recurrent networks like Bidirectional LSTM
 
 # Requirements
-Tensorflow
-pickle
+ 1. Tensorflow
+ 2. pickle
 
 # Train the model
 
