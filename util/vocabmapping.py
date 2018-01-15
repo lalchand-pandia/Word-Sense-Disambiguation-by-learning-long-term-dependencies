@@ -1,6 +1,4 @@
-
 import pickle
-
 
 class VocabMapping:
     def __init__(self, word):
@@ -8,7 +6,7 @@ class VocabMapping:
         with open("util/vocab_"+word+"_sentences.txt", "rb") as handle:
             self.dic = pickle.loads(handle.read())
         with open("util/vocab_"+word+"_senses.txt","rb") as handle1:
-            self.dic1=pickle.loads(handle1.read())
+            self.dic1 = pickle.loads(handle1.read())
 
     def getIndex(self, token):
         try:

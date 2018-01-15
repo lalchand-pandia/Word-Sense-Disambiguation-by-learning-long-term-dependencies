@@ -6,33 +6,33 @@ number_of_senses = int(sys.argv[2])
 def createVocab(max_vocab_size):
     print "Creating vocab mapping..."
     dic = {}
-    f=open("wsd_datasets/"+word+"/"+word+"_sentences-v.txt","r")
-    f1=open("wsd_datasets/"+word+"/"+word+"_senses-v.txt","r")
+    f=open("wsd_datasets/"+word+"/"+word+"_sentences.txt","r")
+    f1=open("wsd_datasets/"+word+"/"+word+"_senses.txt","r")
     for line in f.readlines():
         
 
-        tokens =line.lower().decode('utf-8').split()
+        tokens = line.lower().decode('utf-8').split()
         for t in tokens:
             if t not in dic:
                         dic[t] = 1
             else:
                         dic[t] += 1
     d = {}
-    d_index_2_word={}
+    d_index_2_word = {}
     counter = 0
     for w in sorted(dic, key=dic.get, reverse=True):
         d[w] = counter
-        d_index_2_word[counter]=w
+        d_index_2_word[counter] = w
         counter += 1
         #take most frequent 50k tokens
         if counter >=max_vocab_size:
             break
     #add out of vocab token and pad token
     d["<UNK>"] = counter
-    d_index_2_word[counter]="<UNK>"
+    d_index_2_word[counter] = "<UNK>"
     counter +=1
     d["<PAD>"] = counter
-    d_index_2_word[counter]="<PAD>"
+    d_index_2_word[counter] = "<PAD>"
 
     with open('util/vocab_'+word+'_sentences.txt', 'w') as handle:
         pickle.dump(d, handle)
@@ -52,20 +52,20 @@ def createVocab(max_vocab_size):
             else:
                         dic1[t] += 1
     d1 = {}
-    d1_index_2_word={}
+    d1_index_2_word = {}
     counter = 0
-    for w in sorted(dic1, key=dic1.get, reverse=True):
+    for w in sorted(dic1, key = dic1.get, reverse=True):
         d1[w] = counter
-        d1_index_2_word[counter]=w
+        d1_index_2_word[counter] = w
         counter += 1
         #take most frequent 50k tokens
-        if counter >=max_vocab_size:
+        if counter >= max_vocab_size:
             break
     #add out of vocab token and pad token
     
     
-    d1['unknown_class']=number_of_senses
-    d1_index_2_word[number_of_senses]='unknown_class'
+    d1['unknown_class'] = number_of_senses
+    d1_index_2_word[number_of_senses] = 'unknown_class'
     for key,value in d1.items():
             print key,' ',value
 
