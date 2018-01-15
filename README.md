@@ -14,7 +14,12 @@ cd Word-Sense-Disambiguation-by-learning-long-term-dependencies
 sh run.sh word_to_be_disambiguated number_of_senses_for_the word
 
 e.g., sh run.sh hard 3
-interest has 6 senses, line has 6 senses, serve has 4 senses
+
+interest has 6 senses
+
+line has 6 senses
+
+serve has 4 senses
 
 The script will download gloVe Vectors from https://nlp.stanford.edu/data/glove.6B.zip and train the model, print accuracies and output the incorrect examples in a file.
 
