@@ -11,7 +11,6 @@ import random
 import time
 from six.moves import xrange
 import util.hyperparams as hyperparams
-#import models.sentiment
 import models.bidirectional_lstm_model
 import util.vocabmapping
 import time
@@ -222,7 +221,7 @@ def create_model(session, hyper_params, vocab_size):
 
 	print word
 	print num_classes
-	model = models.bidirectional_lstm_model.SentimentModel(vocab_size,
+	model = models.bidirectional_lstm_model.WSDModel(vocab_size,
 		hyper_params["hidden_size"],
 		hyper_params["dropout"],
 		hyper_params["num_layers"],

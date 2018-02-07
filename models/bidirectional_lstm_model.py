@@ -9,9 +9,9 @@ from glove import *
 
 
 
-class SentimentModel(object):
+class WSDModel(object):
 	'''
-	Sentiment Model
+	WSD Model
 	params:
 	vocab_size: size of vocabulary
 	hidden_size: number of units in a hidden layer
@@ -78,27 +78,18 @@ class SentimentModel(object):
 
 		rnn_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
 
+		def lstm_cell():
+  			return tf.contrib.rnn.DropoutWrapper(
+				tf.contrib.rnn.LSTMCell(hidden_size,
+								  initializer=tf.random_uniform_initializer(-1.0, 1.0),state_is_tuple=True),
+								  input_keep_prob=self.dropout_keep_prob_lstm_input,
+								  output_keep_prob=self.dropout_keep_prob_lstm_output)
+
 
 		with tf.variable_scope("lstm") as scope:
-			forward_cell = tf.contrib.rnn.DropoutWrapper(
-				tf.contrib.rnn.LSTMCell(hidden_size,
-								  initializer=tf.random_uniform_initializer(-1.0, 1.0),state_is_tuple=True),
-								  input_keep_prob=self.dropout_keep_prob_lstm_input,
-								  output_keep_prob=self.dropout_keep_prob_lstm_output)
 			
-			backward_cell = tf.contrib.rnn.DropoutWrapper(
-				tf.contrib.rnn.LSTMCell(hidden_size,
-								  initializer=tf.random_uniform_initializer(-1.0, 1.0),state_is_tuple=True),
-								  input_keep_prob=self.dropout_keep_prob_lstm_input,
-								  output_keep_prob=self.dropout_keep_prob_lstm_output)
-			
-	
-			forward_cell = tf.contrib.rnn.MultiRNNCell([forward_cell for _ in range(num_layers)],state_is_tuple=True)
-			backward_cell = tf.contrib.rnn.MultiRNNCell([backward_cell for _ in range(num_layers)],state_is_tuple=True)
-
-			
-			
-
+			forward_cell = tf.contrib.rnn.MultiRNNCell([lstm_cell() for _ in range(num_layers)],state_is_tuple=True)
+			backward_cell = tf.contrib.rnn.MultiRNNCell([lstm_cell() for _ in range(num_layers)],state_is_tuple=True)
 			initial_forward_state = forward_cell.zero_state(self.batch_size, tf.float32)
 			initial_backward_state = backward_cell.zero_state(self.batch_size, tf.float32)
 			
