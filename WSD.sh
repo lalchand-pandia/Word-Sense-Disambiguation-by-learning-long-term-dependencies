@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-#download  GloVe word vectors
+#download  GloVe word vector from Stanford NLP website
 mkdir data
 cd data
 wget https://nlp.stanford.edu/data/glove.6B.zip
