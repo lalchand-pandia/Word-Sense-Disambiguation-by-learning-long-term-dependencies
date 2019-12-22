@@ -1,5 +1,5 @@
 # Word-Sense-Disambiguation-by-learning-long-term-dependencies 
-Word sense disambiguation by using recurrent networks like Bidirectional LSTM https://github.com/lalchand-pandia/Word-Sense-Disambiguation-by-learning-long-term-dependencies/edit/master/Thesis.pdf
+Word sense disambiguation by using recurrent networks like Bidirectional LSTM https://github.com/lalchand-pandia/Word-Sense-Disambiguation-by-learning-long-term-dependencies/blob/master/Thesis.pdf
 
 # Requirements
  1. Tensorflow
